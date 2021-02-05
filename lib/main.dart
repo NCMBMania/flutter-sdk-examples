@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ncmb/ncmb.dart';
 
 void main() {
+  new NCMB('1f394bd4d2a0a80a45f0c5a86fea448b6b36d5a795ad2ce90ddb6ff7ad136fb2', 'cdc44afd241a213a917f35d58344672ad60e72666bbbd7aa44c82172ea4fa398');
   runApp(MyApp());
 }
 
@@ -9,22 +10,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    NCMB ncmb = new NCMB('1f394bd4d2a0a80a45f0c5a86fea448b6b36d5a795ad2ce90ddb6ff7ad136fb2', 'cdc44afd241a213a917f35d58344672ad60e72666bbbd7aa44c82172ea4fa398');
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'NCMB Flutter SDK Demo', ncmb: ncmb),
+      home: MyHomePage(title: 'NCMB Flutter SDK Demo'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title, this.ncmb}) : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-  final NCMB ncmb;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -41,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _handlePressed() async {
-    NCMBObject item = widget.ncmb.Object('Item')
+    var item = NCMBObject('Item')
       ..set('message', _message);
     await item.save();
     setState(() {
